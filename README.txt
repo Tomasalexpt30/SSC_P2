@@ -3,68 +3,44 @@
 Olá professor, aqui tem um ficheiro README que dá as insruções de como rodar o código.
 No nosso computador nós seguimos estes passos, esperemos que funcione no seu tambem!
 
-SE PEDIR PASWORD INSERIR - 123
+-+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
 
 -+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
 
-## 1. Gerar certificados TLS (ligação segura cliente-servidor) -> começamos por gerar estes certificados que vão aparecer utonomaticamente na pasta. 
-
-keytool -genkeypair -alias server -keyalg RSA -keysize 2048 -keystore serverkeystore.jks -storepass changeit -keypass changeit -dname "CN=localhost, OU=Dev, O=Dev, L=City, S=State, C=PT" -validity 3650
-
-keytool -exportcert -alias server -keystore serverkeystore.jks -storepass changeit -rfc -file server.cer
-
-keytool -importcert -alias server -file server.cer -keystore clienttruststore.jks -storepass changeit -noprompt
-
--+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
-
-## 2. Compilar os ficheiros Java 
+## 1. Compilar os ficheiros Java 
 
 javac *.java
 
 -+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
 
-## 3. Executar o servidor 
+## 3. Executar o servidores 
 
-java BlockStorageServer
-
--+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
-
-IMPORTANTE ----> Tem de criar um terminal separado ao do server
-
-## 4. Executar o cliente - NOTA que o client normal vem com um menu interativo que apenas precisa de escolhar as opções de 1 a 7.
-
-java BlockStorageClient
+Abrir um novo terminal e colocar: java ObliviousAuthServer
+Abrir um novo terminal e colocar: java ObliviousAccessServer
+Abrir um novo terminal e colocar: java BlockStorageServer
 
 -+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
 
-IMPORTANTE ----> Tem de criar um terminal separado ao do server
+## 4. Executar o cliente - Comando Default: 
 
-## 5. Executar o cliente de teste - para usar este cliente precisa de usar os seguintes comandos:
-
-java ClTest
-
-java ClTest PUT <ficheiro> <kw1,kw2,...>
-java ClTest GET <ficheiro|keyword> [destino]
-java ClTest SEARCH <keyword>
-java ClTest LIST
-java ClTest CHECKINTEGRITY <ficheiro>
+Abrir um novo terminal e criar cliente 1: java "-Dp2.userKeyFile=alice.keys" Project2Client
+Abrir um novo terminal e criar cliente 2: java "-Dp2.userKeyFile=bob.keys" Project2Client
+Abrir um novo terminal e criar cliente 3 (se necessário): java "-Dp2.userKeyFile=thomas.keys" Project2Client
 
 -+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
 
-## 7. Testar com um ficheiro de exemplo --> pizza.txt
+## 5. Ações - Ordem das Ações
 
-NOTA: Criamos um ficheiro exemplo chamado "pizza.txt", o professor pode usar esse ficheiro ou se quiser pode criar um novo, ou utilizar uma imagem.
+Cliente 1 (Quem partilha)
+1. Register
+2. Authenticate
+3. Upload
+4. Share
 
-java ClTest PUT client/clientfiles/pizza.txt receita
-java ClTest LIST
-java ClTest SEARCH receita
-java ClTest GET pizza.txt 
-java ClTest GET receita
-java ClTest CHECKINTEGRITY pizza.txt        -----> Neste caso para dar falha, mude o conteudo do block que foi colocado no blockstorage
+Cliente 2 
+1. Register
+2. Authenticate
+3. Download
+4. Search
 
--+-+-+-+-+-++-+--+--+-++-++-++-++-++-++-++-++-+++-+-++-++-++-++-++-++-++-++-++-++-+-++-+++-++-+-++-++-++-++-+
-
-## 8. Encerrar o servidor
-
-Para terminar o servidor, usa Ctrl + C. (no caso do client test), 
-ou clicar na tecla 7 que corresponde ao sair do client nomal
+Os testes são feito com a ajuda do menu interativo. Dentro do cliente deve ser selecionada a opçao da ação. 
