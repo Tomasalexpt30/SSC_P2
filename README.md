@@ -111,7 +111,7 @@ Responsible for:
 
 ---
 
-# Setup Instructions
+## Setup Instructions
 
 ```bash
 # 1 - Generate TLS Certificates
