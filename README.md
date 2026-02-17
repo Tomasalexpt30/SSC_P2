@@ -39,6 +39,28 @@ All components communicate over **TLS-secured channels**, and all sensitive data
 
 ## System Architecture
 
+```mermaid
+flowchart LR
+    C1[Client] -->|"1. Register & Authenticate with ECDSA Challenge-Response"| OAS
+    OAS -->|"2. Issue JWT Token with ES256 / ECDSA P-256"| C2[Client]
+    C2 -->|"3. Send JWT + Signed Request with GET / SEARCH / SHARE"| OAMS
+
+    OAMS -->|"4. Validate ACL & Authorize"| C3[Client]
+    C3 -->|"5. Send Encrypted Blocks with AES-256-GCM"| OBSS
+    OBSS -->|"6. Return Encrypted with Response"| C4[Client]
+
+    OAS:::server
+    OAMS:::server
+    OBSS:::server
+    C1:::client
+    C2:::client
+    C3:::client
+    C4:::client
+
+    classDef client fill:#3b3b3b,color:#fff,stroke:#888
+    classDef server fill:#1e3a5f,color:#fff,stroke:#4a90d9
+```
+
 ### OAS – Oblivious Authentication Server
 
 Responsible for:
