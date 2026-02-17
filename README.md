@@ -96,7 +96,7 @@ Responsible for:
 - Integrity automatically verified via GCM tag
 - No plaintext user database
 
-# Technologies Used
+## Technologies Used
 
 | Technology | Purpose |
 |------------|----------|
