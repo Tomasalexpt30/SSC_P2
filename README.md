@@ -141,7 +141,7 @@ java BlockStorageServer
 java Project2Client
 ```
 
-## Academic Context
+## Authors
 
 This project was developed as part of the **Computer Systems Security** course in the **MSc in Computer Engineering** program at **NOVA School of Science and Technology**.
 
