@@ -167,6 +167,9 @@ java Project2Client
 
 This project was developed as part of the **Computer Systems Security** course in the **MSc in Computer Engineering** program at **NOVA School of Science and Technology**.
 
-With the Authors:
-- **Tomás Alexandre**  
-- **Nicolae Iachimovschi**
+| Student | Number |
+|---------|--------|
+| Tomás Alexandre | 73213 |
+| Nicolae Iachimovschi | 73381 |
+
+> **Professor:** Henrique Domingos | **Lab Class:** 1 
